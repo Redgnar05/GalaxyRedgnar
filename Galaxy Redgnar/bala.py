@@ -1,4 +1,4 @@
-
+from typing import Any
 import pygame
 from pygame.sprite import Sprite
 
@@ -18,6 +18,18 @@ class Bala(Sprite):
 
         self.color = ai_configuraciones.bala_color
         self.factor_velocidad = ai_configuraciones.bala_factor_velocidad
+        
+    def update(self):
+        """Mueve la bala hacia arriba en la pantalla"""
+        # Acutaliza la posición decimal de la bala
+        self.y -= self.factor_velocidad
+        # Actualiza la posición del rect
+        self.rect.y = self.y 
+
+    def draw_bala(self):
+        """Dibuja la bala en la pantalla"""
+        pygame.draw.rect(self.pantalla, self.color, self.rect)
+
         
 
 
