@@ -1,15 +1,17 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Nave():
+class Nave(Sprite):
     """Sirve para gestionar el comportamiento de la nave"""
     def __init__(self, ai_configuraciones, pantalla):
         """Inicializa la nave y establece su posición de partida"""
+        super(Nave, self).__init__()
         self.pantalla = pantalla
         self.ai_configuraciones = ai_configuraciones
 
         # Carga la imagen de la nave y obtiene su rect
-        self.imagen = pygame.image.load("img/nave.bmp")
-        self.rect = self.imagen.get_rect()
+        self.image = pygame.image.load("img/nave.bmp")
+        self.rect = self.image.get_rect()
         self.pantalla_rect = pantalla.get_rect()
 
         # Empieza cada nueva nave en la parte inferior central de la pantalla
@@ -34,7 +36,11 @@ class Nave():
 
     def blitme(self):
         """Dibuja la nave en su ubicación actual"""
-        self.pantalla.blit(self.imagen, self.rect)
+        self.pantalla.blit(self.image, self.rect)
+
+    def centrar_nave(self):
+        """Centra la nave en la pantalla"""
+        self.center = self.pantalla_rect.centerx
 
 
 
